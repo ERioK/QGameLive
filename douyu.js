@@ -25,7 +25,7 @@ function getCategory(md){
         var data1 = jsonD.data;
         md.append({psource:data1[2].game_src, gtname:"直播", cateid:"-1"});
         for(var i = 0; i<data1.length; i++){  //data1.length
-            if(data1[i].game_name === "英雄联盟")
+            if(data1[i].game_name === "英雄联盟")   //信仰2=w=
                 continue;
             var aa =md.append({psource:data1[i].game_src, gtname:data1[i].game_name, cateid:data1[i].cate_id});
         }
