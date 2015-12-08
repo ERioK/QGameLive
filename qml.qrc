@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>main.js</file>
+        <file>douyu.js</file>
+        <file>panda.js</file>
+        <file>utils.js</file>
+    </qresource>
+</RCC>
