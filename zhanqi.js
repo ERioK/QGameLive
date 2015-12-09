@@ -6,7 +6,7 @@ var rooms_url2 = "/40-1.json";
 var video_url1 = "http://www.zhanqi.tv/api/static/live.roomid/";
 var video_url2 = ".json";
 var real_url1 = "http://wshdl.load.cdn.zhanqi.tv/zqlive/";
-var real_url2 = ".flv";
+var real_url2 = ".flv?get_url=1";
 function getCategory(md){
     var showcatelog = function(data){
         var jsonD = JSON.parse(data);
@@ -38,12 +38,12 @@ function getUrl(roomId){
     var url_t = video_url1 + roomId + video_url2;
     console.log(url_t);
     var videoOpen = function(data){
-        console.log(data);
         var data = JSON.parse(data).data;
         var videoId = data.videoId;
         var r_url = real_url1 + videoId + real_url2;
-        console.log(r_url);
-        Qt.openUrlExternally(r_url);
+        Utils.getJsonData(r_url, function(furl){
+            Qt.openUrlExternally(furl);
+        });
     };
     Utils.getJsonData(url_t, videoOpen);
 }
