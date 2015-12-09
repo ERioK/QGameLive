@@ -55,7 +55,7 @@ Window {
             anchors.right: parent.right
             width: 180
             height:parent.height
-            model: [ "douyu","panda" ]
+            model: [ "douyu","panda","zhanqi" ]
             onCurrentTextChanged:{
                 console.log("changed: = " + sitename.textAt(sitename.currentIndex));
                 catemodel.clear();
@@ -74,6 +74,7 @@ Window {
             Image{
                 id:pic
                 width:parent.width-9
+                height:parent.height - 28
                 fillMode:Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top:parent.top
@@ -120,7 +121,7 @@ Window {
                     anchors.top:parent.top
                     width:parent.width - 10
                     height:parent.height - 32
-                    fillMode:Image.PreserveAspectCrop
+                    //fillMode:Image.PreserveAspectCrop
                     source:psource1
                     MouseArea{
                         anchors.fill: parent
