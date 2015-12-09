@@ -6,3 +6,4 @@
 Support sites:
 douyutv
 pandatv
+zhanqitv
