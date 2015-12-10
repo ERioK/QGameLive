@@ -55,7 +55,7 @@ Window {
             anchors.right: parent.right
             width: 180
             height:parent.height
-            model: [ "douyu","panda","zhanqi" ]
+            model: [ "douyu","panda","zhanqi","huomao" ]
             onCurrentTextChanged:{
                 console.log("changed: = " + sitename.textAt(sitename.currentIndex));
                 catemodel.clear();
