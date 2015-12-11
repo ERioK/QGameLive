@@ -39,12 +39,12 @@ function getRooms(md, cateid){
 function getUrl(roomId){
     var curr_time = parseInt(new Date().valueOf() / 1000);
     var hashstr = "nulla" + curr_time + "a" + curr_cid + roomId + added_str;
-    console.log(hashstr);
-    var url = video_url + roomId + "&gid=" + curr_cid + "&t=a&time=" + curr_time + "&token=" + Qt.md5(hashstr) + "&tt=a&uid=null";
+    var url = video_url + roomId + "&&tt=a&uid=null&gid=" + curr_cid + "&t=a&time=" + curr_time + "&token=" + Qt.md5(hashstr) ;
     console.log(url);
     var videoOpen = function(data){
         var data = JSON.parse(data).data;
-        var f_url = data.streamList[0].TD;
+        var f_url = data.streamList[2].TD;
+        console.log(f_url);
         Qt.openUrlExternally(f_url);
     };
     Utils.getJsonData(url, videoOpen);
