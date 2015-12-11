@@ -48,9 +48,9 @@ function getUrl(roomId){
             if(data.streamList[2][quality[i]]){
                 var f_url = data.streamList[2][quality[i]];
                 console.log(f_url);
+                Qt.openUrlExternally(f_url);
                 return 
             }
-                //Qt.openUrlExternally(f_url);
         };
     };
     Utils.getJsonData(url, videoOpen);
