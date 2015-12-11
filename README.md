@@ -7,3 +7,4 @@ Support sites:
 douyutv
 pandatv
 zhanqitv
+huomaotv
