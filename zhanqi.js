@@ -41,9 +41,11 @@ function getUrl(roomId){
         var data = JSON.parse(data).data;
         var videoId = data.videoId;
         var r_url = real_url1 + videoId + real_url2;
-        Utils.getJsonData(r_url, function(furl){
-            Qt.openUrlExternally(furl);
-        });
+        var furl = "rtmp://dlrtmp.cdn.zhanqi.tv/zqlive/" + videoId;
+        Qt.openUrlExternally(furl);
+        //Utils.getJsonData(r_url, function(furl){
+        //    Qt.openUrlExternally(furl);
+        //});
     };
     Utils.getJsonData(url_t, videoOpen);
 }
