@@ -11,10 +11,16 @@ import "main.js" as MainJs
 Window {
     visible: true
     id:mainwindow
-    width:1080
-    height:1920
+    //width:1080
+    //height:1920
     //property var MainJs: DouyuJs
     Component.onCompleted:{
+        if(Qt.platform.os != "android"){
+            mainwindow.width = 600;
+            mainwindow.height = 800;
+            setX(Screen.width / 2 - width / 2);
+            setY(Screen.height / 2 - height / 2);
+        }
         MainJs.setSite("douyu");
         //MainJs.getCategory(catemodel);
     }

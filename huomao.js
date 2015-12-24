@@ -11,10 +11,11 @@ function getCategory(md){
     var timehash = Qt.md5(curr_time + added_str);
     var cate_url = cate_url1 + curr_time + cate_url2 + timehash;
     var showcatelog = function(data){
+        data = data.substr(data.indexOf("/html>") + 6);
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data;
         for(var i = 0; i<data1.length; i++){  //data1.length
-            md.append({psource:data1[i].image, gtname:data1[i].ename, cateid:data1[i].gid});
+            md.append({psource:data1[i].image, gtname:data1[i].cname, cateid:data1[i].gid});
         }
     };
     Utils.getJsonData(cate_url, showcatelog);
@@ -26,6 +27,7 @@ function getRooms(md, cateid){
     var hashstr = curr_time + "1" + cateid + added_str;
     var url = rooms_url + cateid + "&page=1&time=" + curr_time + "&token=" + Qt.md5(hashstr);
     var showRooms = function(data){
+        data = data.substr(data.indexOf("/html>") + 6);
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data.list;
         for(var i = 0; i<data1.length; i++){  //data1.length
@@ -41,8 +43,8 @@ function getUrl(roomId){
     var curr_time = parseInt(new Date().valueOf() / 1000);
     var hashstr = "nulla" + curr_time + "a" + curr_cid + roomId + added_str;
     var url = video_url + roomId + "&&tt=a&uid=null&gid=" + curr_cid + "&t=a&time=" + curr_time + "&token=" + Qt.md5(hashstr) ;
-    console.log(url);
     var videoOpen = function(data){
+        data = data.substr(data.indexOf("/html>") + 6);
         var data = JSON.parse(data).data;
         for(var i = 0; i< quality.length; i++){
             if(data.streamList[2][quality[i]]){
