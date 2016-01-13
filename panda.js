@@ -21,7 +21,6 @@ function getCategory(md){
 }
 
 function getRooms(md, cateid){
-    console.log(cateid);
     var cat_url;
     if(cateid === "-1")
         cat_url = all_url;
@@ -30,10 +29,8 @@ function getRooms(md, cateid){
     var showRooms = function(data){
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data.items;
-        console.log(data1.length);
         for(var i = 0; i<data1.length; i++){  //data1.length
-            //console.log(data1[i].room_src);
-            md.append({psource1:data1[i].pictures.img, gtname1:data1[i].name, roomid:data1[i].id});
+            md.append({psource1:data1[i].pictures.img, gtname1:data1[i].name, roomid:data1[i].id, zbname:data1[i].userinfo.nickName, online:(data1[i].person_num).toString()});
         }
     };
     Utils.getJsonData(cat_url, showRooms);
@@ -41,14 +38,11 @@ function getRooms(md, cateid){
 
 function getUrl(roomId){
     var url_t = base_url + roomId;
-    console.log(url_t);
     var videoOpen = function(data){
-        console.log(data);
         var data = JSON.parse(data).data.info;
         var room_key = data.videoinfo.room_key;
         var plflag = data.videoinfo.plflag;
         var video_url = video_url_1 + plflag[plflag.length - 1] + video_url_2 + room_key + video_url_3;
-        console.log(video_url);
         Qt.openUrlExternally(video_url);
     };
     Utils.getJsonData(url_t, videoOpen);

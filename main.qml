@@ -11,9 +11,6 @@ import "main.js" as MainJs
 Window {
     visible: true
     id:mainwindow
-    //width:1080
-    //height:1920
-    //property var MainJs: DouyuJs
     Component.onCompleted:{
         if(Qt.platform.os != "android"){
             mainwindow.width = 600;
@@ -22,7 +19,6 @@ Window {
             setY(Screen.height / 2 - height / 2);
         }
         MainJs.setSite("douyu");
-        //MainJs.getCategory(catemodel);
     }
     property string currcid
     Rectangle{
@@ -61,7 +57,7 @@ Window {
             anchors.right: parent.right
             width: 180
             height:parent.height
-            model: [ "douyu","panda","zhanqi","huomao","letv" ]
+            model: [ "douyu","panda","zhanqi","huomao"]
             onCurrentTextChanged:{
                 console.log("changed: = " + sitename.textAt(sitename.currentIndex));
                 catemodel.clear();
@@ -80,7 +76,7 @@ Window {
             Image{
                 id:pic
                 width:parent.width-9
-                height:parent.height - 28
+                height:width * 1.4
                 fillMode:Image.PreserveAspectFit
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top:parent.top
@@ -97,13 +93,17 @@ Window {
                     }
                 }
             }
-            Text{
+            Label{
                 id:gname
                 width:parent.width
+                height:parent.height - pic.height
                 anchors.top:pic.bottom
                 horizontalAlignment:Text.AlignHCenter
-                wrapMode: Text.WordWrap
                 text: gtname
+                font.weight:Font.DemiBold
+                font.pixelSize:height
+                fontSizeMode:Text.VerticalFit
+                wrapMode: Text.WordWrap
             }
             Label{
                 id:tlabel2
@@ -117,17 +117,15 @@ Window {
         id: gamecate    //直播间目录
         Item{
             Rectangle{
-                //property string roomid
                 id:gameitem
-                width:roomview.cellWidth
+                width:roomview.cellWidth 
                 height:roomview.cellHeight
                 Image{
                     id:pic1
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top:parent.top
                     width:parent.width - 10
-                    height:parent.height - 32
-                    //fillMode:Image.PreserveAspectCrop
+                    height:this.width * 9 / 16
                     source:psource1
                     MouseArea{
                         anchors.fill: parent
@@ -136,13 +134,36 @@ Window {
                         }
                     }
                 }
-                Text{
+                Label{
                     id:gname1
                     width:parent.width
+                    height:(parent.height-pic1.height) * 3 / 5
                     anchors.top:pic1.bottom
-                    horizontalAlignment:Text.AlignHCenter
+                    anchors.left:pic1.left
+                    font.weight:Font.DemiBold
+                    font.pixelSize:height
+                    fontSizeMode:Text.VerticalFit
                     text: gtname1
-                    wrapMode: Text.WordWrap
+                    wrapMode: Text.Wrap
+                }
+                Label{
+                    id:pname
+                    height:(parent.height-pic1.height) * 2 / 5
+                    anchors.left:pic1.left
+                    anchors.top:gname1.bottom
+                    anchors.bottom:parent.bottom
+                    text: zbname
+                    font.pixelSize:height
+                }
+                Label{
+                    id:anum
+                    anchors.right:pic1.right
+                    anchors.top:gname1.bottom
+                    anchors.bottom:parent.bottom
+                    height:(parent.height-pic1.height) * 2 / 5
+                    //fontSizeMode:Text.VerticalFit
+                    font.pixelSize:height
+                    text:online
                 }
                 Label{
                     id:tlabel
@@ -164,7 +185,7 @@ Window {
             anchors.centerIn: parent
             id: cateview
             cellWidth: cateview.width / 3
-            cellHeight: this.cellWidth * 1.4 + 15
+            cellHeight: this.cellWidth * 1.45
             model: catemodel
             delegate: catedele
         }
@@ -177,7 +198,7 @@ Window {
             anchors.centerIn: parent
             id: roomview
             cellWidth: roomview.width / 2
-            cellHeight: this.cellWidth * 9 / 16 + 10
+            cellHeight: this.cellWidth * 11 / 16
             model: roommodel
             delegate: gamecate
             onMovementEnded: {

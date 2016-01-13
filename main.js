@@ -6,17 +6,13 @@
 var Site;
 
 var str2Site = {"douyu":Douyu,
-                "panda":Panda,
-                "zhanqi":Zhanqi,
-                "huomao":Huomao,
-                "letv":Lesport,
+    "panda":Panda,
+    "zhanqi":Zhanqi,
+    "huomao":Huomao,
+    "letv":Lesport,
 }
 
 function setSite(name) {
-//    if(name === "douyu")
-//        Site = Douyu;
-//    else if(name === "panda")
-//        Site = Panda;
     Site = str2Site[name];
 }
 

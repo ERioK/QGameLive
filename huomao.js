@@ -15,7 +15,8 @@ function getCategory(md){
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data;
         for(var i = 0; i<data1.length; i++){  //data1.length
-            md.append({psource:data1[i].image, gtname:data1[i].cname, cateid:data1[i].gid});
+            md.append({psource:data1[i].image, gtname:data1[i].cname,
+                          cateid:data1[i].gid});
         }
     };
     Utils.getJsonData(cate_url, showcatelog);
@@ -31,8 +32,10 @@ function getRooms(md, cateid){
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data.list;
         for(var i = 0; i<data1.length; i++){  //data1.length
-            //console.log(data1[i].room_src);
-            md.append({psource1:data1[i].image, gtname1:data1[i].channel, roomid:data1[i].cid});
+            md.append({psource1:data1[i].image, gtname1:data1[i].channel, roomid:data1[i].cid,
+                          zbname:data1[i].username,
+                          online:data1[i].views,
+                      });
         }
     };
     Utils.getJsonData(url, showRooms);
@@ -49,9 +52,8 @@ function getUrl(roomId){
         for(var i = 0; i< quality.length; i++){
             if(data.streamList[2][quality[i]]){
                 var f_url = data.streamList[2][quality[i]];
-                console.log(f_url);
                 Qt.openUrlExternally(f_url);
-                return 
+                return
             }
         };
     };

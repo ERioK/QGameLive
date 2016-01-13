@@ -19,16 +19,13 @@ function getCategory(md){
 }
 
 function getRooms(md, cateid){
-    console.log(cateid);
     var cat_url;
     cat_url = rooms_url + cateid + rooms_url2;
     var showRooms = function(data){
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data.rooms;
-        console.log(data1.length);
         for(var i = 0; i<data1.length; i++){  //data1.length
-            //console.log(data1[i].room_src);
-            md.append({psource1:data1[i].spic, gtname1:data1[i].title, roomid:data1[i].id});
+            md.append({psource1:data1[i].spic, gtname1:data1[i].title, roomid:data1[i].id, zbname:data1[i].nickname, online:(data1[i].online).toString()});
         }
     };
     Utils.getJsonData(cat_url, showRooms);
@@ -37,7 +34,6 @@ function getRooms(md, cateid){
 function getKey(cdn){
     var MASK = "#{&..?!(";
     var result = '';
-    console.log(cdn.length);
     for(var i = 0; i < cdn.length; i++){
         result += String.fromCharCode(MASK[i%8].charCodeAt(0) ^ cdn[i].charCodeAt(0));
     }
@@ -55,7 +51,6 @@ function getUrl(roomId){
         var key = getKey(Qt.atob(cdn));
         var timestr = parseInt(new Date().getTime()/1000 + 1).toString(16);
         var fullkey = key + "/zqlive/" + videoId + timestr;
-        console.log(fullkey);
         var furl = "rtmp://dlrtmp.cdn.zhanqi.tv/zqlive/" + videoId + "?k=" + Qt.md5(fullkey) + "&t=" + timestr;
         Qt.openUrlExternally(furl);
     };

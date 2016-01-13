@@ -12,7 +12,6 @@ function getUrl(roomId){
         var a = data.slice(data.indexOf("</html>") + 7);
         var data1 = JSON.parse(a);
         var ans = data1["data"]["rtmp_url"] + "/" +  data1["data"]["rtmp_live"];
-        console.log(ans);
         Qt.openUrlExternally(ans);
     };
     Utils.getJsonData(url_t, videoOpen);
@@ -44,8 +43,12 @@ function getRooms(md, cateid){
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data;
         for(var i = 0; i<data1.length; i++){  //data1.length
-            //console.log(data1[i].room_src);
-            md.append({psource1:data1[i].room_src, gtname1:data1[i].room_name, roomid:data1[i].room_id});
+            md.append({
+                          psource1:data1[i].room_src,
+                          gtname1:data1[i].room_name,
+                          roomid:data1[i].room_id,
+                          zbname:data1[i].nickname,
+                          online:data1[i].online});
         }
     };
     Utils.getJsonData(cat_url, showRooms);
