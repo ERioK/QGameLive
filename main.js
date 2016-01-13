@@ -2,12 +2,14 @@
 .import "panda.js" as Panda
 .import "zhanqi.js" as Zhanqi
 .import "huomao.js" as Huomao
+.import "letv.js" as Lesport
 var Site;
 
 var str2Site = {"douyu":Douyu,
                 "panda":Panda,
                 "zhanqi":Zhanqi,
                 "huomao":Huomao,
+                "letv":Lesport,
 }
 
 function setSite(name) {

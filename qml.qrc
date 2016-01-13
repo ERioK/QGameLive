@@ -7,5 +7,6 @@
         <file>utils.js</file>
         <file>zhanqi.js</file>
         <file>huomao.js</file>
+        <file>letv.js</file>
     </qresource>
 </RCC>
