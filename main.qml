@@ -148,10 +148,11 @@ Window {
                 }
                 Label{
                     id:pname
-                    height:(parent.height-pic1.height) * 2 / 5
+                    height:(parent.height-pic1.height) * 2 / 5 + 5
                     anchors.left:pic1.left
                     anchors.top:gname1.bottom
                     anchors.bottom:parent.bottom
+                    anchors.bottomMargin:5
                     text: zbname
                     font.pixelSize:height
                 }
@@ -160,9 +161,10 @@ Window {
                     anchors.right:pic1.right
                     anchors.top:gname1.bottom
                     anchors.bottom:parent.bottom
-                    height:(parent.height-pic1.height) * 2 / 5
+                    height:(parent.height-pic1.height) * 2 / 5 + 5
                     //fontSizeMode:Text.VerticalFit
                     font.pixelSize:height
+                    anchors.bottomMargin:5
                     text:online
                 }
                 Label{
