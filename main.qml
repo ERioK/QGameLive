@@ -55,12 +55,13 @@ Window {
         ComboBox {
             id:sitename
             anchors.right: parent.right
-            width: 180
+            width: 220
             height:parent.height
-            model: [ "douyu","panda","zhanqi","huomao"]
+            model: [ "douyu","panda","zhanqi","huomao","letv"]
             onCurrentTextChanged:{
                 console.log("changed: = " + sitename.textAt(sitename.currentIndex));
                 catemodel.clear();
+                loading.visible = true;
                 MainJs.setSite(sitename.currentText);
                 MainJs.getCategory(catemodel);
             }
@@ -88,6 +89,7 @@ Window {
                         roomview.visible = true;
                         backbutton.visible = true;
                         sitename.visible = false;
+                        loading.visible = true;
                         MainJs.getRooms(roommodel, tlabel2.text);
                         currcid = tlabel2.text;
                     }
@@ -209,6 +211,12 @@ Window {
                     MainJs.getRooms(roommodel, currcid);
                 }
             }
+        }
+        AnimatedImage{
+            source:"loading.gif"
+            anchors.centerIn: parent
+            id:loading
+            visible:true
         }
     }
     ListModel {

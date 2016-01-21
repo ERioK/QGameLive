@@ -8,5 +8,8 @@
         <file>zhanqi.js</file>
         <file>huomao.js</file>
         <file>letv.js</file>
+        <file>dlogo.png</file>
+        <file>pdlogo.jpg</file>
+        <file>loading.gif</file>
     </qresource>
 </RCC>

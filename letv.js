@@ -18,7 +18,7 @@ function getCategory(md){
             if(entries[i].status == 1){
                 entries[i].name = "[Live!]" + entries[i].name;
             }
-            md.append({psource:entries[i].imageUrl["400*225"], gtname:entries[i].name, cateid:entries[i].commentId});
+            md.append({psource:entries[i].imageUrl["400*225"], gtname:entries[i].name, cateid:entries[i].id.toString()});
         }
     }
     Utils.getJsonData(rooms_url, rooms_cb);
@@ -33,8 +33,12 @@ function getRooms(md, cateid){
             var getStreams = function(data){
                 var rows = JSON.parse(data).rows;
                 for(var i = 0; i < rows.length; i++){
-                    md.append({psource1:liveData.imageUrl["400*225"], gtname1:rows[i].rateType, 
-                        roomid:[rows[i].streamUrl, rows[i].streamName, liveId].join(",").toString()});
+                    md.append({psource1:liveData.imageUrl["400*225"],
+                                gtname1:rows[i].rateType,
+                                roomid:[rows[i].streamUrl, rows[i].streamName, liveId].join(",").toString(),
+                                  zbname:" ",
+                                  online:" ",
+                              });
                 }
             }
             Utils.getJsonData(streams_url + selectId, getStreams)
@@ -42,6 +46,7 @@ function getRooms(md, cateid){
         Utils.getJsonData(select_id + liveId, getSelectId);
     };
     var url = room_info + cateid + room_info2;
+    console.log(url + "6666")
     Utils.getJsonData(url, getLiveId);
 }
 

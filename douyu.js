@@ -22,7 +22,8 @@ function getCategory(md){
     var showcatelog = function(data){
         var jsonD = JSON.parse(data);
         var data1 = jsonD.data;
-        md.append({psource:data1[2].game_src, gtname:"直播", cateid:"-1"});
+        //md.append({psource:data1[2].game_src, gtname:"直播", cateid:"-1"});
+        md.append({psource:"dlogo.png", gtname:"热门直播", cateid:"-1"});
         for(var i = 0; i<data1.length; i++){  //data1.length
             if(data1[i].game_name === "英雄联盟")   //信仰2=w=
                 continue;
@@ -48,7 +49,7 @@ function getRooms(md, cateid){
                           gtname1:data1[i].room_name,
                           roomid:data1[i].room_id,
                           zbname:data1[i].nickname,
-                          online:data1[i].online});
+                          online:data1[i].online.toString()});
         }
     };
     Utils.getJsonData(cat_url, showRooms);
